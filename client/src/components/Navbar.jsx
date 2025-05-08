@@ -35,7 +35,7 @@ const Navbar = () => {
             <div className="hidden sm:flex items-center gap-8">
                 <NavLink to='/'>Home</NavLink>
                 <NavLink to='/products'>All product</NavLink>
-                
+
 
                 <div className="hidden lg:flex items-center text-sm gap-2 border border-gray-300 px-3 rounded-full">
                     <input onChange={(e) => SetSearchQuery(e.target.value)} className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500" type="text" placeholder="Search products" />
@@ -79,30 +79,55 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             {open && (
-                <div className={`${open ? 'flex' : 'hidden'} absolute top-[60px] left-0 w-full bg-white shadow-md py-4 flex-col items-start gap-2 px-5 text-sm md:hidden`}>
-                    <NavLink to='/' onClick={() => setOpen(false)}>Home</NavLink>
-                    <NavLink to='/product' onClick={() => setOpen(false)}>All product</NavLink>
+                <div className="absolute top-full left-0 w-full bg-white shadow-md py-4 px-5 flex flex-col items-start gap-3 text-sm md:hidden z-50">
+                    <NavLink
+                        to="/"
+                        onClick={() => setOpen(false)}
+                        className="hover:text-primary transition-colors"
+                    >
+                        Home
+                    </NavLink>
 
-                    {user &&
-                        <NavLink to='/products' onClick={() => setOpen(false)}>My Orders</NavLink>
-                    }
-                    
+                    <NavLink
+                        to="/products"
+                        onClick={() => setOpen(false)}
+                        className="hover:text-primary transition-colors"
+                    >
+                        All Products
+                    </NavLink>
 
+                    {user && (
+                        <NavLink
+                            to="/my-orders"
+                            onClick={() => setOpen(false)}
+                            className="hover:text-primary transition-colors"
+                        >
+                            My Orders
+                        </NavLink>
+                    )}
 
-                    {/* --Whenever user is login this we show the logout bottom */}
                     {!user ? (
-                        <button onClick={() => { setOpen(false); setShowUserLogin(true) }} className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-primary-dull transition text-white rounded-full text-sm">
+                        <button
+                            onClick={() => {
+                                setOpen(false);
+                                setShowUserLogin(true);
+                            }}
+                            className=" mt-3 px-6 py-2 bg-primary hover:bg-primary-dull text-white rounded-full transition"
+                        >
                             Login
                         </button>
                     ) : (
-                        <button onClick={logout} className="cursor-pointer px-6 py-2 mt-2 bg-primary hover:bg-primary-dull transition text-white rounded-full text-sm">
+                        <button
+                            onClick={logout}
+                            className=" mt-3 px-6 py-2 bg-primary hover:bg-primary-dull text-white rounded-full transition"
+                        >
                             Logout
                         </button>
                     )}
-
-
                 </div>
             )}
+
+
 
         </nav>
     )
