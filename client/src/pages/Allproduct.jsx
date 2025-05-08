@@ -5,7 +5,7 @@ import ProductCard from '../components/ProductCard';
 const Allproduct = () => {
 
     const {products,searchquery}=useAppContext();
-    const [filter,SetFilter]=useState([])
+    const [filterproduct,SetFilterProduct]=useState([])
 
 
     useEffect(()=>{
@@ -13,11 +13,10 @@ const Allproduct = () => {
         // This checks if the user has typed something into the search bar.
         //If the search query is not empty, then it means we should filter the product list.
         if (searchquery.length>0){ 
-            SetFilter(
-                products.filter(product=>
-                    product.name.toLowerCase().includes(searchquery.toLowerCase())
+            SetFilterProduct(products.filter(
+              product=>product.name.toLowerCase().includes(searchquery.toLowerCase())
             ))}else{
-                SetFilter(products)   //If the search query is empty, show all products again by setting SetFilter(products) (i.e., reset filter).
+                SetFilterProduct(products)   //If the search query is empty, show all products again by setting SetFilter(products) (i.e., reset filter).
             }
                
     },[products,searchquery])
@@ -31,7 +30,7 @@ const Allproduct = () => {
       </div>
 
       <div className='grid grid-cols-2 sm:grid-cols-2  md:grid-cols-4 gap-3 md:gap-6 lg:grid-cols-5 mt-6'>
-        {filter.filter((product)=>product.inStock).map((product,index)=>(
+        {filterproduct.filter((product)=>product.inStock).map((product,index)=>(
             <ProductCard key={index} product={product}/>
         ))}
       </div>

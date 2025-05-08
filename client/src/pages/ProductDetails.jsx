@@ -11,7 +11,7 @@ const ProductDetails = () => {
 
     const navigate=useNavigate();
 
-    const {products,naavigate,currency,addToCart}=useAppContext();
+    const {products,currency,addToCart}=useAppContext();
     const {id}=useParams()
 
     const [relatedProducts, SetRelatedproducts] = useState([]);

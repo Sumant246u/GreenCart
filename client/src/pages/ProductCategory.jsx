@@ -7,7 +7,7 @@ import ProductCard from '../components/ProductCard';
 const ProductCategory = () => {
 
 
-  const {products}=useAppContext();
+  const {products,}=useAppContext();
   const {category}=useParams();
 
 
